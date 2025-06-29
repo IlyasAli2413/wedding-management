@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL; // ✅ Add this
 use Illuminate\Contracts\Http\Kernel;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,12 +21,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-            if (env('APP_ENV') === 'production') {
+        // Force HTTPS in production
+        if (env('APP_ENV') === 'production') {
             URL::forceScheme('https');
         }
-        
+
+        // Register custom middleware aliases
         $this->app['router']->aliasMiddleware('admin', \App\Http\Middleware\AdminMiddleware::class);
         $this->app['router']->aliasMiddleware('user', \App\Http\Middleware\UserMiddleware::class);
-
     }
 }
