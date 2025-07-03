@@ -55,6 +55,6 @@ class StaffMemberController extends Controller
     public function destroy(StaffMember $staffmember)
     {
         $staffmember->delete();
-        return redirect()->route('staffmembers.index')->with('success', 'Staff member deleted.');
+        return redirect()->route('admin.staffmembers.index')->with('success', 'Staff member deleted.');
     }
 }
