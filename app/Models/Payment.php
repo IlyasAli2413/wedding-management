@@ -17,7 +17,8 @@ class Payment extends Model
         'Amount',
         'Method',
         'Status',
-        'User_ID'
+        'User_ID',
+        'screenshot_path',
     ];
 
     public $timestamps = true;

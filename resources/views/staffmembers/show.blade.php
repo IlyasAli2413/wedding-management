@@ -11,5 +11,5 @@
     <li style="margin-bottom: 10px;"><strong>Salary:</strong> {{ $staffmember->Salary }}</li>
 </ul>
 
-<a href="{{ route('staffmembers.index') }}" style="background-color: gray; color: white; padding: 8px 15px; text-decoration: none;">Back</a>
+<a href="{{ route('admin.staffmembers.index') }}" style="background-color: gray; color: white; padding: 8px 15px; text-decoration: none;">Back</a>
 @endsection

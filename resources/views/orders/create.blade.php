@@ -2,225 +2,165 @@
 @section('title', 'Create New Order')
 
 @section('content')
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
     body {
-        background-color: #f5f7fa;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Montserrat', Arial, sans-serif;
+        background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+        min-height: 100vh;
+        margin: 0;
     }
-
-    .container {
-        max-width: 800px;
-        margin: 30px auto;
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    .order-glass {
+        background: rgba(255,255,255,0.85);
+        border-radius: 24px;
+        box-shadow: 0 12px 40px rgba(102, 126, 234, 0.18);
+        padding: 48px 36px 32px 36px;
+        max-width: 950px;
+        margin: 48px auto 32px auto;
+        position: relative;
+        backdrop-filter: blur(8px);
+        border: 1.5px solid rgba(255,255,255,0.35);
     }
-
-    h2 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 25px;
-    }
-
-    .form-section {
-        margin-bottom: 30px;
-        padding: 20px;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        background-color: #fafafa;
-    }
-
-    .form-section h3 {
-        color: #2c3e50;
-        margin-bottom: 15px;
-        border-bottom: 2px solid #3498db;
-        padding-bottom: 5px;
-    }
-
-    .mb-3 {
-        margin-bottom: 20px;
-    }
-
-    label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 6px;
-        color: #34495e;
-    }
-
-    input[type="text"],
-    input[type="date"],
-    input[type="number"],
-    select,
-    textarea {
-        width: 100%;
-        padding: 10px 12px;
-        font-size: 15px;
-        border: 1px solid #ced4da;
-        border-radius: 6px;
-        background-color: #fdfdfd;
-        transition: border-color 0.3s ease;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-        border-color: #3490dc;
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(52, 144, 220, 0.2);
-    }
-
-    .menu-items-section {
-        max-height: 300px;
-        overflow-y: auto;
-        border: 1px solid #ddd;
-        padding: 15px;
-        border-radius: 6px;
-        background-color: #fff;
-    }
-
-    .menu-item {
-        background: #f8f9fa;
-        padding: 15px;
-        margin-bottom: 10px;
-        border-radius: 6px;
-        border: 1px solid #dee2e6;
-        transition: all 0.3s ease;
-    }
-
-    .menu-item:hover {
-        border-color: #007bff;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .menu-item-header {
+    .stepper {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .menu-item-details {
-        background: #e9ecef;
-        padding: 15px;
-        border-radius: 6px;
-        margin-top: 10px;
-    }
-
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -10px;
-    }
-
-    .col-md-6 {
-        flex: 0 0 50%;
-        max-width: 50%;
+        margin-bottom: 36px;
         padding: 0 10px;
     }
-
-    .form-control {
-        width: 100%;
-        padding: 8px 12px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #fff;
-    }
-
-    .text-muted {
-        color: #6c757d;
-        font-size: 14px;
-    }
-
-    .alert {
-        padding: 15px;
-        margin-bottom: 20px;
-        border-radius: 6px;
-    }
-
-    .alert-info {
-        background-color: #d1ecf1;
-        color: #0c5460;
-        border: 1px solid #bee5eb;
-    }
-
-    .btn {
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-size: 16px;
-        text-decoration: none;
-        margin-right: 10px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: none;
-    }
-
-    .btn-success {
-        background-color: #28a745;
-        color: white;
-    }
-
-    .btn-success:hover {
-        background-color: #218838;
-        transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-        background-color: #6c757d;
-        color: white;
-    }
-
-    .btn-secondary:hover {
-        background-color: #5a6268;
-    }
-
-    .text-danger {
-        color: #dc3545;
-        font-size: 14px;
-        margin-top: 5px;
-    }
-
-    .row {
+    .step {
         display: flex;
-        gap: 15px;
-    }
-
-    .col {
+        flex-direction: column;
+        align-items: center;
         flex: 1;
+        color: #f5576c;
+        font-weight: 700;
+        font-size: 1.1em;
+        opacity: 0.7;
     }
-
-    .venue-options {
-        margin-bottom: 15px;
-        padding: 15px;
-        background-color: #f8f9fa;
-        border-radius: 6px;
-        border: 1px solid #e9ecef;
+    .step.active {
+        color: #6a11cb;
+        opacity: 1;
     }
-
-    .venue-options input[type="radio"] {
-        margin-right: 8px;
-        transform: scale(1.1);
+    .step .icon {
+        font-size: 2.1em;
+        margin-bottom: 6px;
     }
-
-    .venue-options label {
-        font-weight: normal;
-        color: #495057;
-        cursor: pointer;
+    .form-section {
+        background: rgba(255,255,255,0.7);
+        border-radius: 16px;
+        padding: 28px 22px 14px 22px;
+        margin-bottom: 32px;
+        box-shadow: 0 2px 12px rgba(102, 126, 234, 0.09);
     }
-
-    #existing_venue_section,
-    #manual_venue_section {
-        margin-top: 10px;
+    .form-section h3 {
+        font-size: 1.2em;
+        color: #f5576c;
+        font-weight: 700;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
-
-    #manual_venue_section input {
-        margin-bottom: 10px;
+    .form-section h3 .icon {
+        font-size: 1.5em;
     }
-
-    .venue-section.active {
-        display: block;
+    .floating-label {
+        position: relative;
+        margin-bottom: 22px;
+    }
+    .floating-label input,
+    .floating-label select,
+    .floating-label textarea {
+        width: 100%;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 14px 12px 14px 12px;
+        font-size: 1em;
+        background: transparent;
+        outline: none;
+        transition: border 0.2s, box-shadow 0.2s;
+        box-shadow: none;
+    }
+    .floating-label input:focus,
+    .floating-label select:focus,
+    .floating-label textarea:focus {
+        border: 1.5px solid #f5576c;
+        box-shadow: 0 2px 12px rgba(246, 83, 144, 0.10);
+    }
+    .floating-label label {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        color: #888;
+        font-size: 1em;
+        background: transparent;
+        pointer-events: none;
+        transition: 0.2s;
+        font-weight: 500;
+    }
+    .floating-label input:focus + label,
+    .floating-label input:not(:placeholder-shown) + label,
+    .floating-label select:focus + label,
+    .floating-label select:not([value=""]) + label,
+    .floating-label textarea:focus + label,
+    .floating-label textarea:not(:placeholder-shown) + label {
+        top: -10px;
+        left: 10px;
+        font-size: 0.88em;
+        color: #f5576c;
+        background: #fff;
+        padding: 0 4px;
+    }
+    .btn-success {
+        background: linear-gradient(90deg, #f857a6 0%, #ff5858 100%);
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.2em;
+        border-radius: 10px;
+        padding: 16px 40px;
+        box-shadow: 0 6px 24px rgba(246, 83, 144, 0.18);
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        margin-top: 18px;
+        text-shadow: 0 2px 8px #fda08544;
+        outline: none;
+        position: relative;
+        z-index: 1;
+    }
+    .btn-success:hover {
+        background: linear-gradient(90deg, #ff5858 0%, #f857a6 100%);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 12px 32px rgba(246, 83, 144, 0.22);
+        filter: brightness(1.08);
+    }
+    .btn-secondary {
+        background: #e0e0e0;
+        color: #333;
+        border-radius: 8px;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+    .menu-item {
+        background: rgba(255,255,255,0.85);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.07);
+        padding: 18px 18px 10px 18px;
+        margin-bottom: 18px;
+    }
+    .menu-item-header strong {
+        color: #6a11cb;
+    }
+    .text-danger {
+        color: #e74c3c;
+        font-size: 0.97em;
+        margin-top: 2px;
+    }
+    @media (max-width: 900px) {
+        .order-glass { padding: 18px 2vw; }
+    }
+    @media (max-width: 700px) {
+        .order-glass { padding: 8px 1vw; }
+        .form-section { padding: 10px 2vw; }
     }
 </style>
 
@@ -285,14 +225,6 @@
                         <div id="existing_venue_section">
                             <select name="Venue_ID" id="Venue_ID">
                                 <option value="">Choose a Venue</option>
-                                <option value="1" {{ old('Venue_ID') == '1' ? 'selected' : '' }}>Grand Ballroom - Downtown (Capacity: 300)</option>
-                                <option value="2" {{ old('Venue_ID') == '2' ? 'selected' : '' }}>Beach Resort - Coastal Area (Capacity: 150)</option>
-                                <option value="3" {{ old('Venue_ID') == '3' ? 'selected' : '' }}>Garden Palace - City Center (Capacity: 200)</option>
-                                <option value="4" {{ old('Venue_ID') == '4' ? 'selected' : '' }}>Mountain Lodge - Scenic View (Capacity: 100)</option>
-                                <option value="5" {{ old('Venue_ID') == '5' ? 'selected' : '' }}>Historic Mansion - Old Town (Capacity: 250)</option>
-                                <option value="6" {{ old('Venue_ID') == '6' ? 'selected' : '' }}>Rooftop Terrace - Skyline (Capacity: 80)</option>
-                                <option value="7" {{ old('Venue_ID') == '7' ? 'selected' : '' }}>Country Club - Suburban (Capacity: 180)</option>
-                                <option value="8" {{ old('Venue_ID') == '8' ? 'selected' : '' }}>Vineyard Estate - Wine Country (Capacity: 120)</option>
                                 @foreach($venues as $venue)
                                     <option value="{{ $venue->Venue_ID }}" {{ old('Venue_ID') == $venue->Venue_ID ? 'selected' : '' }}>
                                         {{ $venue->Name }} - {{ $venue->Location }} (Capacity: {{ $venue->Capacity }})

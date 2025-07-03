@@ -27,7 +27,7 @@ class StaffMemberController extends Controller
         ]);
 
         StaffMember::create($validated);
-        return redirect()->route('staffmembers.index')->with('success', 'Staff member added.');
+        return redirect()->route('admin.staffmembers.index')->with('success', 'Staff member added.');
     }
 
     public function show(StaffMember $staffmember)
@@ -49,7 +49,7 @@ class StaffMemberController extends Controller
         ]);
 
         $staffmember->update($validated);
-        return redirect()->route('staffmembers.index')->with('success', 'Staff member updated.');
+        return redirect()->route('admin.staffmembers.index')->with('success', 'Staff member updated.');
     }
 
     public function destroy(StaffMember $staffmember)

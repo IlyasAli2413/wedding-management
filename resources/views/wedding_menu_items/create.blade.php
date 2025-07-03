@@ -4,7 +4,7 @@
 @section('content')
 <h2 style="margin-bottom: 20px;">Add New Menu Item</h2>
 
-<form action="{{ route('admin.weddingmenuitems.store') }}" method="POST" style="max-width: 600px;">
+<form action="{{ route('admin.menu-items.store') }}" method="POST" style="max-width: 600px;">
     @csrf
     
     <div style="margin-bottom: 15px;">
@@ -23,6 +23,6 @@
     </div>
     
     <button type="submit" style="padding: 10px 20px; background-color: green; color: white; border: none; border-radius: 4px; cursor: pointer;">Add Menu Item</button>
-    <a href="{{ route('admin.weddingmenuitems.index') }}" style="padding: 8px 16px; background-color: gray; color: white; text-decoration: none; margin-left: 10px;">Cancel</a>
+    <a href="{{ route('admin.menu-items.index') }}" style="padding: 8px 16px; background-color: gray; color: white; text-decoration: none; margin-left: 10px;">Cancel</a>
 </form>
 @endsection

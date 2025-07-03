@@ -42,26 +42,26 @@ class WeddingMenuItemController extends Controller
 
         WeddingMenuItem::create($validated);
 
-        return redirect()->route('admin.wedding_menu_items.index')->with('success', 'Menu item created successfully.');
+        return redirect()->route('admin.menu-items.index')->with('success', 'Menu item created successfully.');
     }
 
-    public function show(WeddingMenuItem $wedding_menu_item)
+    public function show(WeddingMenuItem $menuItem)
     {
-        return view('wedding_menu_items.show', ['menuItem' => $wedding_menu_item]);
+        return view('wedding_menu_items.show', compact('menuItem'));
     }
 
     // Show menu item for users (read-only)
-    public function userShow(WeddingMenuItem $wedding_menu_item)
+    public function userShow(WeddingMenuItem $menuItem)
     {
-        return view('wedding_menu_items.show', ['menuItem' => $wedding_menu_item]);
+        return view('wedding_menu_items.show', compact('menuItem'));
     }
 
-    public function edit(WeddingMenuItem $wedding_menu_item)
+    public function edit(WeddingMenuItem $menuItem)
     {
-        return view('wedding_menu_items.edit', ['menuItem' => $wedding_menu_item]);
+        return view('wedding_menu_items.edit', compact('menuItem'));
     }
 
-    public function update(Request $request, WeddingMenuItem $wedding_menu_item)
+    public function update(Request $request, WeddingMenuItem $menuItem)
     {
         $validated = $request->validate([
             'Name' => 'required|string|max:100',
@@ -69,15 +69,15 @@ class WeddingMenuItemController extends Controller
             'Price' => 'required|numeric|min:0',
         ]);
 
-        $wedding_menu_item->update($validated);
+        $menuItem->update($validated);
 
-        return redirect()->route('admin.wedding_menu_items.index')->with('success', 'Menu item updated.');
+        return redirect()->route('admin.menu-items.index')->with('success', 'Menu item updated.');
     }
 
-    public function destroy(WeddingMenuItem $wedding_menu_item)
+    public function destroy(WeddingMenuItem $menuItem)
     {
-        $wedding_menu_item->delete();
+        $menuItem->delete();
 
-        return redirect()->route('admin.wedding_menu_items.index')->with('success', 'Menu item deleted.');
+        return redirect()->route('admin.menu-items.index')->with('success', 'Menu item deleted.');
     }
 }

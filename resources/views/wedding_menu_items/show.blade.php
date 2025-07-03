@@ -21,7 +21,7 @@
 
 <div style="margin-top: 20px;">
     @if(Auth::user()->isAdmin())
-        <a href="{{ route('admin.weddingmenuitems.index') }}" style="padding: 8px 16px; background-color: gray; color: white; text-decoration: none;">Back</a>
+        <a href="{{ route('admin.menu-items.index') }}" style="padding: 8px 16px; background-color: gray; color: white; text-decoration: none;">Back</a>
     @else
         <a href="{{ route('user.menu-items.index') }}" style="padding: 8px 16px; background-color: gray; color: white; text-decoration: none;">Back</a>
     @endif

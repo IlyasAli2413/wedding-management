@@ -23,6 +23,12 @@
     <div style="margin-bottom: 10px;">
         <strong>Status:</strong> {{ $payment->Status }}
     </div>
+    @if($payment->screenshot_path)
+        <div style="margin-bottom: 10px;">
+            <strong>Payment Screenshot:</strong><br>
+            <img src="{{ asset('storage/' . $payment->screenshot_path) }}" alt="Payment Screenshot" style="max-width: 300px; border-radius: 8px; margin-top: 8px;">
+        </div>
+    @endif
 </div>
 
 <div style="margin-top: 20px;">
