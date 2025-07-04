@@ -17,7 +17,7 @@ class UserMiddleware
     {
         // Check if user is authenticated
         if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'Please login to access this area.');
+            return redirect()->route('user.login')->with('error', 'Please login to access this area.');
         }
 
         // Check if user is NOT admin (i.e., regular user)

@@ -68,9 +68,8 @@
     <h2>Order Details</h2>
 
     <div class="list-item"><strong>Order ID:</strong> {{ $order->Order_ID }}</div>
-    <div class="list-item"><strong>Name:</strong> {{ $order->Name ?? 'Not specified' }}</div>
     <div class="list-item"><strong>Client:</strong> {{ $order->client->Name ?? 'Client ' . $order->Client_ID }}</div>
-    <div class="list-item"><strong>Wedding Type:</strong> {{ $order->Wedding_Type ?? 'Not specified' }}</div>
+    <div class="list-item"><strong>Wedding Type:</strong> {{ $order->wedding->Event_Type ?? 'Not specified' }}</div>
     <div class="list-item"><strong>Order Date:</strong> {{ \Carbon\Carbon::parse($order->Order_Date)->format('M d, Y') }}</div>
     <div class="list-item">
         <strong>Status:</strong> 

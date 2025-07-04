@@ -4,7 +4,7 @@
 @section('content')
 <h2 style="margin-bottom: 20px;">Edit Staff Member</h2>
 
-<form action="{{ route('staffmembers.update', $staffmember->Staffmember_ID) }}" method="POST">
+<form action="{{ route('admin.staffmembers.update', $staffmember->Staffmember_ID) }}" method="POST">
     @csrf
     @method('PUT')
     <div style="margin-bottom: 15px;">
@@ -20,6 +20,6 @@
         <input type="number" name="Salary" value="{{ $staffmember->Salary }}" style="width: 100%; padding: 8px;" required>
     </div>
     <button type="submit" style="background-color: blue; color: white; padding: 8px 15px;">Update</button>
-    <a href="{{ route('staffmembers.index') }}" style="background-color: gray; color: white; padding: 8px 15px; text-decoration: none;">Cancel</a>
+    <a href="{{ route('admin.staffmembers.index') }}" style="background-color: gray; color: white; padding: 8px 15px; text-decoration: none;">Cancel</a>
 </form>
 @endsection

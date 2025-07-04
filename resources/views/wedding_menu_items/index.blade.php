@@ -5,7 +5,7 @@
 <h2 style="margin-bottom: 20px;">{{ Auth::user()->isAdmin() ? 'Wedding Menu Items' : 'Available Menu Items' }}</h2>
 
 @if(Auth::user()->isAdmin())
-    <a href="{{ route('admin.weddingmenuitems.create') }}" style="display: inline-block; margin-bottom: 15px; padding: 8px 16px; background-color: green; color: white; text-decoration: none;">Add Menu Item</a>
+    <a href="{{ route('admin.menu-items.create') }}" style="display: inline-block; margin-bottom: 15px; padding: 8px 16px; background-color: green; color: white; text-decoration: none;">Add Menu Item</a>
 @endif
 
 <table style="width: 100%; border-collapse: collapse;">
@@ -29,9 +29,9 @@
             <td style="border: 1px solid #ddd; padding: 8px;">{{ $item->Price }}</td>
             @if(Auth::user()->isAdmin())
                 <td style="border: 1px solid #ddd; padding: 8px;">
-                    <a href="{{ route('admin.weddingmenuitems.show', $item->MenuItem_ID) }}" style="padding: 4px 8px; background-color: #17a2b8; color: white; text-decoration: none;">View</a>
-                    <a href="{{ route('admin.weddingmenuitems.edit', $item->MenuItem_ID) }}" style="padding: 4px 8px; background-color: orange; color: white; text-decoration: none;">Edit</a>
-                    <form action="{{ route('admin.weddingmenuitems.destroy', $item->MenuItem_ID) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('admin.menu-items.show', $item) }}" style="padding: 4px 8px; background-color: #17a2b8; color: white; text-decoration: none;">View</a>
+                    <a href="{{ route('admin.menu-items.edit', $item) }}" style="padding: 4px 8px; background-color: orange; color: white; text-decoration: none;">Edit</a>
+                    <form action="{{ route('admin.menu-items.destroy', $item) }}" method="POST" style="display:inline;">
                         @csrf @method('DELETE')
                         <button style="padding: 4px 8px; background-color: red; color: white; border: none;" onclick="return confirm('Delete this item?')">Delete</button>
                     </form>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateCleanWeddingManagementTables extends Migration
 {
     /**
      * Run the migrations.
@@ -55,7 +55,6 @@ return new class extends Migration
             $table->date('Date');
             $table->string('Client_Contact', 100);
             $table->timestamps();
-            
             $table->foreign('Venue_ID')->references('Venue_ID')->on('venue')->onDelete('cascade');
         });
 
@@ -67,7 +66,6 @@ return new class extends Migration
             $table->string('Contact', 100);
             $table->text('Address');
             $table->timestamps();
-            
             $table->foreign('Wedding_ID')->references('Wedding_ID')->on('wedding')->onDelete('cascade');
         });
 
@@ -78,9 +76,8 @@ return new class extends Migration
             $table->unsignedBigInteger('Wedding_ID');
             $table->date('Order_Date');
             $table->string('Status', 50);
-            $table->unsignedBigInteger('User_ID'); // For user authentication
+            $table->unsignedBigInteger('User_ID');
             $table->timestamps();
-            
             $table->foreign('Client_ID')->references('Client_ID')->on('client')->onDelete('cascade');
             $table->foreign('Wedding_ID')->references('Wedding_ID')->on('wedding')->onDelete('cascade');
             $table->foreign('User_ID')->references('id')->on('users')->onDelete('cascade');
@@ -94,9 +91,9 @@ return new class extends Migration
             $table->decimal('Amount', 10, 2);
             $table->string('Method', 50);
             $table->string('Status', 50)->default('Pending');
-            $table->unsignedBigInteger('User_ID'); // For user authentication
+            $table->string('screenshot_path')->nullable();
+            $table->unsignedBigInteger('User_ID');
             $table->timestamps();
-            
             $table->foreign('Order_ID')->references('Order_ID')->on('order')->onDelete('cascade');
             $table->foreign('User_ID')->references('id')->on('users')->onDelete('cascade');
         });
@@ -117,7 +114,6 @@ return new class extends Migration
             $table->integer('Quantity');
             $table->text('Special_Notes')->nullable();
             $table->timestamps();
-            
             $table->primary(['Order_ID', 'MenuItem_ID']);
             $table->foreign('Order_ID')->references('Order_ID')->on('order')->onDelete('cascade');
             $table->foreign('MenuItem_ID')->references('MenuItem_ID')->on('wedding_menu_item')->onDelete('cascade');
@@ -139,7 +135,6 @@ return new class extends Migration
             $table->unsignedBigInteger('Inventory_ID');
             $table->integer('Quantity_Required');
             $table->timestamps();
-            
             $table->foreign('MenuItem_ID')->references('MenuItem_ID')->on('wedding_menu_item')->onDelete('cascade');
             $table->foreign('Inventory_ID')->references('Inventory_ID')->on('inventory_item')->onDelete('cascade');
         });
@@ -160,7 +155,6 @@ return new class extends Migration
             $table->string('Role', 100);
             $table->string('Shift_Time', 50);
             $table->timestamps();
-            
             $table->primary(['Wedding_ID', 'Staffmember_ID']);
             $table->foreign('Wedding_ID')->references('Wedding_ID')->on('wedding')->onDelete('cascade');
             $table->foreign('Staffmember_ID')->references('Staffmember_ID')->on('staffmember')->onDelete('cascade');
@@ -171,7 +165,6 @@ return new class extends Migration
             $table->unsignedBigInteger('Staffmember_ID')->primary();
             $table->string('Speciality', 100);
             $table->timestamps();
-            
             $table->foreign('Staffmember_ID')->references('Staffmember_ID')->on('staffmember')->onDelete('cascade');
         });
 
@@ -180,7 +173,6 @@ return new class extends Migration
             $table->unsignedBigInteger('Staffmember_ID')->primary();
             $table->string('Assigned_Section', 100);
             $table->timestamps();
-            
             $table->foreign('Staffmember_ID')->references('Staffmember_ID')->on('staffmember')->onDelete('cascade');
         });
 
@@ -189,7 +181,6 @@ return new class extends Migration
             $table->unsignedBigInteger('Staffmember_ID')->primary();
             $table->integer('Managed_Events_Count');
             $table->timestamps();
-            
             $table->foreign('Staffmember_ID')->references('Staffmember_ID')->on('staffmember')->onDelete('cascade');
         });
 
@@ -198,7 +189,6 @@ return new class extends Migration
             $table->unsignedBigInteger('wedding_id');
             $table->unsignedBigInteger('venue_id');
             $table->timestamps();
-            
             $table->primary(['wedding_id', 'venue_id']);
             $table->foreign('wedding_id')->references('Wedding_ID')->on('wedding')->onDelete('cascade');
             $table->foreign('venue_id')->references('Venue_ID')->on('venue')->onDelete('cascade');
@@ -227,4 +217,4 @@ return new class extends Migration
         Schema::dropIfExists('client');
         Schema::dropIfExists('venue');
     }
-};
+} 

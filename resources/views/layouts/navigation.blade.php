@@ -1,61 +1,56 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-gradient-to-r from-purple-600 to-blue-500 shadow-lg">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    @if(Auth::user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}">
-                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                        </a>
-                    @else
-                        <a href="{{ route('user.dashboard') }}">
-                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                        </a>
-                    @endif
+                    <div class="flex items-center space-x-3">
+                        <x-application-logo class="animate-bounce-slow" />
+                        <span class="text-white text-2xl font-bold tracking-wide">Wedding Management</span>
+                    </div>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @if(Auth::user()->isAdmin())
                         <!-- Admin Navigation -->
-                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('Admin Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
+                        <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('All Orders') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.payments.index')" :active="request()->routeIs('admin.payments.*')">
+                        <x-nav-link :href="route('admin.payments.index')" :active="request()->routeIs('admin.payments.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('All Payments') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.venues.index')" :active="request()->routeIs('admin.venues.*')">
+                        <x-nav-link :href="route('admin.venues.index')" :active="request()->routeIs('admin.venues.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('Venues') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.staffmembers.index')" :active="request()->routeIs('admin.staffmembers.*')">
+                        <x-nav-link :href="route('admin.staffmembers.index')" :active="request()->routeIs('admin.staffmembers.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('Staff') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.clients.index')" :active="request()->routeIs('admin.clients.*')">
+                        <x-nav-link :href="route('admin.clients.index')" :active="request()->routeIs('admin.clients.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('Clients') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.menu-items.index')" :active="request()->routeIs('admin.menu-items.*')">
+                        <x-nav-link :href="route('admin.menu-items.index')" :active="request()->routeIs('admin.menu-items.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('Menu Items') }}
                         </x-nav-link>
                     @else
                         <!-- User Navigation -->
-                        <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
+                        <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('user.orders.index')" :active="request()->routeIs('user.orders.*')">
+                        <x-nav-link :href="route('user.orders.index')" :active="request()->routeIs('user.orders.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('My Orders') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('user.payments.index')" :active="request()->routeIs('user.payments.*')">
+                        <x-nav-link :href="route('user.payments.index')" :active="request()->routeIs('user.payments.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('My Payments') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('user.venues.index')" :active="request()->routeIs('user.venues.*')">
+                        <x-nav-link :href="route('user.venues.index')" :active="request()->routeIs('user.venues.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('Venues') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('user.menu-items.index')" :active="request()->routeIs('user.menu-items.*')">
+                        <x-nav-link :href="route('user.menu-items.index')" :active="request()->routeIs('user.menu-items.*')" class="text-white hover:text-purple-200 transition font-semibold">
                             {{ __('Menu Items') }}
                         </x-nav-link>
                     @endif
@@ -66,7 +61,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white hover:text-purple-200 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }} ({{ Auth::user()->role }})</div>
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -99,7 +94,7 @@
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-purple-200 focus:outline-none focus:text-purple-200 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -114,56 +109,56 @@
         <div class="pt-2 pb-3 space-y-1">
             @if(Auth::user()->isAdmin())
                 <!-- Admin Navigation -->
-                <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" class="text-white hover:text-purple-200">
                     {{ __('Admin Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
+                <x-responsive-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')" class="text-white hover:text-purple-200">
                     {{ __('All Orders') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.payments.index')" :active="request()->routeIs('admin.payments.*')">
+                <x-responsive-nav-link :href="route('admin.payments.index')" :active="request()->routeIs('admin.payments.*')" class="text-white hover:text-purple-200">
                     {{ __('All Payments') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.venues.index')" :active="request()->routeIs('admin.venues.*')">
+                <x-responsive-nav-link :href="route('admin.venues.index')" :active="request()->routeIs('admin.venues.*')" class="text-white hover:text-purple-200">
                     {{ __('Venues') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.staffmembers.index')" :active="request()->routeIs('admin.staffmembers.*')">
+                <x-responsive-nav-link :href="route('admin.staffmembers.index')" :active="request()->routeIs('admin.staffmembers.*')" class="text-white hover:text-purple-200">
                     {{ __('Staff') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.clients.index')" :active="request()->routeIs('admin.clients.*')">
+                <x-responsive-nav-link :href="route('admin.clients.index')" :active="request()->routeIs('admin.clients.*')" class="text-white hover:text-purple-200">
                     {{ __('Clients') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.menu-items.index')" :active="request()->routeIs('admin.menu-items.*')">
+                <x-responsive-nav-link :href="route('admin.menu-items.index')" :active="request()->routeIs('admin.menu-items.*')" class="text-white hover:text-purple-200">
                     {{ __('Menu Items') }}
                 </x-responsive-nav-link>
             @else
                 <!-- User Navigation -->
-                <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
+                <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')" class="text-white hover:text-purple-200">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('user.orders.index')" :active="request()->routeIs('user.orders.*')">
+                <x-responsive-nav-link :href="route('user.orders.index')" :active="request()->routeIs('user.orders.*')" class="text-white hover:text-purple-200">
                     {{ __('My Orders') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('user.payments.index')" :active="request()->routeIs('user.payments.*')">
+                <x-responsive-nav-link :href="route('user.payments.index')" :active="request()->routeIs('user.payments.*')" class="text-white hover:text-purple-200">
                     {{ __('My Payments') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('user.venues.index')" :active="request()->routeIs('user.venues.*')">
+                <x-responsive-nav-link :href="route('user.venues.index')" :active="request()->routeIs('user.venues.*')" class="text-white hover:text-purple-200">
                     {{ __('Venues') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('user.menu-items.index')" :active="request()->routeIs('user.menu-items.*')">
+                <x-responsive-nav-link :href="route('user.menu-items.index')" :active="request()->routeIs('user.menu-items.*')" class="text-white hover:text-purple-200">
                     {{ __('Menu Items') }}
                 </x-responsive-nav-link>
             @endif
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+        <div class="pt-4 pb-1 border-t border-purple-400">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }} ({{ Auth::user()->role }})</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-base text-white">{{ Auth::user()->name }} ({{ Auth::user()->role }})</div>
+                <div class="font-medium text-sm text-purple-200">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('profile.edit')" class="text-white hover:text-purple-200">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
@@ -175,7 +170,7 @@
                 @endif
                     @csrf
 
-                    <button type="submit" class="w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition duration-150 ease-in-out">
+                    <button type="submit" class="w-full text-left px-4 py-2 text-sm leading-5 text-white hover:text-purple-200 focus:outline-none transition duration-150 ease-in-out">
                         {{ __('Log Out') }}
                     </button>
                 </form>

@@ -4,7 +4,7 @@
 @section('content')
 <h2 style="margin-bottom: 20px;">Staff Members</h2>
 
-<a href="{{ route('staffmembers.create') }}" style="background-color: #0d6efd; color: white; padding: 8px 15px; text-decoration: none; margin-bottom: 10px; display: inline-block;">+ Add Staff Member</a>
+<a href="{{ route('admin.staffmembers.create') }}" style="background-color: #0d6efd; color: white; padding: 8px 15px; text-decoration: none; margin-bottom: 10px; display: inline-block;">+ Add Staff Member</a>
 
 <table style="width: 100%; border-collapse: collapse;">
     <thead>
@@ -24,9 +24,9 @@
                 <td style="border: 1px solid #ccc; padding: 10px;">{{ $member->Address }}</td>
                 <td style="border: 1px solid #ccc; padding: 10px;">{{ $member->Salary }}</td>
                 <td style="border: 1px solid #ccc; padding: 10px;">
-                    <a href="{{ route('staffmembers.show', $member->Staffmember_ID) }}" style="background-color: #17a2b8; color: white; padding: 5px 10px; text-decoration: none;">View</a>
-                    <a href="{{ route('staffmembers.edit', $member->Staffmember_ID) }}" style="background-color: #ffc107; color: black; padding: 5px 10px; text-decoration: none;">Edit</a>
-                    <form action="{{ route('staffmembers.destroy', $member->Staffmember_ID) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('admin.staffmembers.show', $member->Staffmember_ID) }}" style="background-color: #17a2b8; color: white; padding: 5px 10px; text-decoration: none;">View</a>
+                    <a href="{{ route('admin.staffmembers.edit', $member->Staffmember_ID) }}" style="background-color: #ffc107; color: black; padding: 5px 10px; text-decoration: none;">Edit</a>
+                    <form action="{{ route('admin.staffmembers.destroy', $member->Staffmember_ID) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" onclick="return confirm('Delete this staff member?')" style="background-color: red; color: white; padding: 5px 10px; border: none;">Delete</button>
