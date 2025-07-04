@@ -20,7 +20,7 @@ class CreateCleanWeddingManagementTables extends Migration
         Schema::dropIfExists('menu_inventorymapping');
         Schema::dropIfExists('wedding_event');
         Schema::dropIfExists('payment');
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders');
         Schema::dropIfExists('guest');
         Schema::dropIfExists('wedding');
         Schema::dropIfExists('wedding_menu_item');
@@ -69,8 +69,8 @@ class CreateCleanWeddingManagementTables extends Migration
             $table->foreign('Wedding_ID')->references('Wedding_ID')->on('wedding')->onDelete('cascade');
         });
 
-        // Create ORDER table
-        Schema::create('order', function (Blueprint $table) {
+        // Create ORDERS table
+        Schema::create('orders', function (Blueprint $table) {
             $table->id('Order_ID');
             $table->unsignedBigInteger('Client_ID');
             $table->unsignedBigInteger('Wedding_ID');
@@ -94,7 +94,7 @@ class CreateCleanWeddingManagementTables extends Migration
             $table->string('screenshot_path')->nullable();
             $table->unsignedBigInteger('User_ID');
             $table->timestamps();
-            $table->foreign('Order_ID')->references('Order_ID')->on('order')->onDelete('cascade');
+            $table->foreign('Order_ID')->references('Order_ID')->on('orders')->onDelete('cascade');
             $table->foreign('User_ID')->references('id')->on('users')->onDelete('cascade');
         });
 
@@ -115,7 +115,7 @@ class CreateCleanWeddingManagementTables extends Migration
             $table->text('Special_Notes')->nullable();
             $table->timestamps();
             $table->primary(['Order_ID', 'MenuItem_ID']);
-            $table->foreign('Order_ID')->references('Order_ID')->on('order')->onDelete('cascade');
+            $table->foreign('Order_ID')->references('Order_ID')->on('orders')->onDelete('cascade');
             $table->foreign('MenuItem_ID')->references('MenuItem_ID')->on('wedding_menu_item')->onDelete('cascade');
         });
 
@@ -208,7 +208,7 @@ class CreateCleanWeddingManagementTables extends Migration
         Schema::dropIfExists('menu_inventorymapping');
         Schema::dropIfExists('wedding_event');
         Schema::dropIfExists('payment');
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders');
         Schema::dropIfExists('guest');
         Schema::dropIfExists('wedding');
         Schema::dropIfExists('wedding_menu_item');
