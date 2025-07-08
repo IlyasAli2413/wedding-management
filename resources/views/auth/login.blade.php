@@ -1,5 +1,9 @@
 @extends('layouts.guest')
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 43e2df2a0413232a06535f2cd7a87dbc6265dce8
 @section('content')
 <div class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-purple-100 py-12 px-4 sm:px-6 lg:px-8 animate-fade-in">
     <div class="w-full max-w-md space-y-8">
@@ -7,6 +11,22 @@
             <img class="mx-auto h-16 w-auto animate-bounce-slow" src="/favicon.ico" alt="Logo" />
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
             <p class="mt-2 text-center text-sm text-gray-600">Welcome back! Please login to continue.</p>
+<<<<<<< HEAD
+=======
+=======
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
+
+    <form method="POST" action="{{ route('user.login') }}">
+        @csrf
+
+        <!-- Email Address -->
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+>>>>>>> eb2100bd96d0077ca1685dce352220888af84177
+>>>>>>> 43e2df2a0413232a06535f2cd7a87dbc6265dce8
         </div>
         <form class="mt-8 space-y-6 bg-white p-8 rounded-xl shadow-lg animate-slide-up" method="POST" action="{{ route('login') }}">
             @csrf

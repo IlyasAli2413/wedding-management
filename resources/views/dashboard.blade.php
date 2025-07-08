@@ -254,6 +254,10 @@
         .action-card:hover, .stat-card:hover {
             box-shadow: 0 12px 32px rgba(102, 126, 234, 0.18);
             transform: translateY(-4px) scale(1.03);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 43e2df2a0413232a06535f2cd7a87dbc6265dce8
         }
         @keyframes fade-in {
             from { opacity: 0; }
@@ -269,6 +273,11 @@
         }
         .animate-pop:hover {
             animation: pop 0.2s;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> eb2100bd96d0077ca1685dce352220888af84177
+>>>>>>> 43e2df2a0413232a06535f2cd7a87dbc6265dce8
         }
     </style>
 </head>
