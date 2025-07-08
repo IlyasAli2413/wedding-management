@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -38,35 +39,36 @@ class PaymentController extends Controller
     }
 
     // Store new payment
-   public function store(Request $request)
-{
-    $validated = $request->validate([
-        'Order_ID'      => 'required|exists:order,Order_ID',
-        'Payment_Date'  => 'required|date',
-        'Amount'        => 'required|numeric|min:0',
-        'Method'        => 'required|string|max:100',
-    ]);
+    public function store(Request $request)
+    {
+        // Only validate that Order_ID exists and belongs to the user (minimal validation)
+        $orderId = $request->input('Order_ID');
+        if (!$orderId || !Order::where('Order_ID', $orderId)->exists()) {
+            abort(400, 'Order not found.');
+        }
+        if (Auth::user()->isUser()) {
+            $order = Order::findOrFail($orderId);
+            if ($order->User_ID !== Auth::id()) {
+                abort(403, 'Access denied.');
+            }
+        }
 
-    // For users, ensure they can only pay for their own orders
-    if (Auth::user()->isUser()) {
-        $order = Order::findOrFail($validated['Order_ID']);
-        if ($order->User_ID !== Auth::id()) {
-            abort(403, 'Access denied.');
+        $payment = new Payment();
+        $payment->Order_ID = $orderId;
+        $payment->Payment_Date = $request->input('Payment_Date');
+        $payment->Amount = $request->input('Amount');
+        $payment->Method = $request->input('Method');
+        $payment->Status = $request->input('Status');
+        $payment->User_ID = Auth::id();
+
+        $payment->save();
+
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('admin.payments.index')->with('success', 'Payment recorded successfully.');
+        } else {
+            return redirect()->route('user.dashboard')->with('success', 'Payment recorded successfully.');
         }
     }
-
-    $validated['User_ID'] = auth()->id(); // ✅ this is required
-
-    Payment::create($validated);
-
-    // Redirect based on user role
-    if (Auth::user()->isAdmin()) {
-        return redirect()->route('admin.payments.index')->with('success', 'Payment recorded successfully.');
-    } else {
-        return redirect()->route('user.payments.index')->with('success', 'Payment recorded successfully.');
-    }
-}
-
 
     // Show one payment
     public function show($id)

@@ -47,6 +47,12 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="profile_screenshot" :value="__('Profile Screenshot (optional)')" />
+            <input id="profile_screenshot" name="profile_screenshot" type="file" accept="image/*" class="mt-1 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('profile_screenshot')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

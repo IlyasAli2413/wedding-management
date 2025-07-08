@@ -4,7 +4,7 @@
 @section('content')
 <h2 style="margin-bottom: 20px;">Add New Staff Member</h2>
 
-<form action="{{ route('staffmembers.store') }}" method="POST">
+<form action="{{ route('admin.staffmembers.store') }}" method="POST">
     @csrf
     <div style="margin-bottom: 15px;">
         <label>Name</label>
@@ -19,6 +19,6 @@
         <input type="number" name="Salary" style="width: 100%; padding: 8px;" required>
     </div>
     <button type="submit" style="background-color: green; color: white; padding: 8px 15px;">Save</button>
-    <a href="{{ route('staffmembers.index') }}" style="background-color: gray; color: white; padding: 8px 15px; text-decoration: none;">Cancel</a>
+    <a href="{{ route('admin.staffmembers.index') }}" style="background-color: gray; color: white; padding: 8px 15px; text-decoration: none;">Cancel</a>
 </form>
 @endsection

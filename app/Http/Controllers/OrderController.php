@@ -52,7 +52,6 @@ class OrderController extends Controller
                 'Order_Date' => 'required|date',
                 'Status' => 'required|string|max:50',
                 'menu_items' => 'array',
-                'menu_items.*.selected' => 'sometimes|boolean',
                 'menu_items.*.MenuItem_ID' => 'required_with:menu_items.*.selected|exists:wedding_menu_item,MenuItem_ID',
                 'menu_items.*.Quantity' => 'required_with:menu_items.*.selected|integer|min:1',
                 'menu_items.*.Special_Notes' => 'nullable|string|max:500',
@@ -71,7 +70,6 @@ class OrderController extends Controller
                 'Order_Date' => 'required|date',
                 'Status' => 'required|string|max:50',
                 'menu_items' => 'array',
-                'menu_items.*.selected' => 'sometimes|boolean',
                 'menu_items.*.MenuItem_ID' => 'required_with:menu_items.*.selected|exists:wedding_menu_item,MenuItem_ID',
                 'menu_items.*.Quantity' => 'required_with:menu_items.*.selected|integer|min:1',
                 'menu_items.*.Special_Notes' => 'nullable|string|max:500',
@@ -133,7 +131,7 @@ class OrderController extends Controller
         if (Auth::user()->isAdmin()) {
             return redirect()->route('admin.orders.index')->with('success', 'Order created successfully.');
         } else {
-            return redirect()->route('user.orders.index')->with('success', 'Order created successfully.');
+            return redirect()->route('user.dashboard')->with('success', 'Order created successfully.');
         }
     }
 
@@ -181,7 +179,6 @@ class OrderController extends Controller
                 'Order_Date' => 'required|date',
                 'Status' => 'required|string|max:50',
                 'menu_items' => 'array',
-                'menu_items.*.selected' => 'sometimes|boolean',
                 'menu_items.*.MenuItem_ID' => 'required_with:menu_items.*.selected|exists:wedding_menu_item,MenuItem_ID',
                 'menu_items.*.Quantity' => 'required_with:menu_items.*.selected|integer|min:1',
                 'menu_items.*.Special_Notes' => 'nullable|string|max:500',
@@ -200,7 +197,6 @@ class OrderController extends Controller
                 'Order_Date' => 'required|date',
                 'Status' => 'required|string|max:50',
                 'menu_items' => 'array',
-                'menu_items.*.selected' => 'sometimes|boolean',
                 'menu_items.*.MenuItem_ID' => 'required_with:menu_items.*.selected|exists:wedding_menu_item,MenuItem_ID',
                 'menu_items.*.Quantity' => 'required_with:menu_items.*.selected|integer|min:1',
                 'menu_items.*.Special_Notes' => 'nullable|string|max:500',
